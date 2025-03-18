@@ -3,7 +3,8 @@ const app = express();
 
 app.use(express.json());
 
-app.post('/', async (req, res) => {
+// Aquí agregamos la ruta exacta que espera Make
+app.post('/v1/documents', async (req, res) => {
   try {
     const response = await fetch('https://back.apisunat.com/1.0/ubl', {
       method: 'POST',
@@ -26,4 +27,5 @@ const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
   console.log(`Servidor corriendo en el puerto ${PORT}`);
 });
+
 
