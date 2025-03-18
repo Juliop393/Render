@@ -1,5 +1,4 @@
 const express = require('express');
-const fetch = require('node-fetch');
 const app = express();
 
 app.use(express.json());
@@ -16,7 +15,6 @@ app.post('/', async (req, res) => {
     });
 
     const result = await response.json();
-
     res.status(response.status).json(result);
   } catch (error) {
     console.error('Error al enviar a APISUNAT:', error);
@@ -28,3 +26,4 @@ const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
   console.log(`Servidor corriendo en el puerto ${PORT}`);
 });
+
