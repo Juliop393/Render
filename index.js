@@ -7,11 +7,11 @@ app.use(express.json());
 app.post('/', async (req, res) => {
   try {
     const response = await axios.post(
-      'https://api.apisunat.com/v1/send', // Usa aquí el endpoint real de APISUNAT
+      'https://back.apisunat.com', // CORRECTO AHORA
       req.body,
       {
         headers: {
-          'Authorization': 'Bearer TU_TOKEN_AQUI',
+          'Authorization': 'Bearer DEV_JCABLBOVCDOH29lPiopwLkFFBAnaUX0TaYGXCzBmpty62XYDkw19VLPJVcI0Z0EV',
           'Content-Type': 'application/json'
         }
       }
