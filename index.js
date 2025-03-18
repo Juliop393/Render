@@ -1,28 +1,30 @@
-const express = require("express");
-const axios = require("axios");
-
+const express = require('express');
+const fetch = require('node-fetch');
 const app = express();
+
 app.use(express.json());
 
-app.post("/", async (req, res) => {
+app.post('/', async (req, res) => {
   try {
-    const jsonData = req.body;
-
-    const response = await axios.post("https://back.apisunat.com/v1/documents", jsonData, {
+    const response = await fetch('https://back.apisunat.com/1.0/ubl', {
+      method: 'POST',
       headers: {
-        Authorization: "Bearer DEV_JCABLBOVCDOH29lPiopwLkFFBAnaUX0TaYGXCzBmpty62XYDkw19VLPJVcI0Z0EV",
-        "Content-Type": "application/json",
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer DEV_JCABLBOVCDOH29lPiopwLkFFBAnaUX0TaYGXCzBmpty62XYDkw19VLPJVcI0Z0EV'
       },
+      body: JSON.stringify(req.body)
     });
 
-    res.status(200).json(response.data);
+    const result = await response.json();
+
+    res.status(response.status).json(result);
   } catch (error) {
-    console.error("Error al enviar a APISUNAT:", error.response?.data || error.message);
-    res.status(500).json({ error: error.response?.data || "Error interno" });
+    console.error('Error al enviar a APISUNAT:', error);
+    res.status(500).json({ error: error.message });
   }
 });
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
-  console.log(`Servidor corriendo en puerto ${PORT}`);
+  console.log(`Servidor corriendo en el puerto ${PORT}`);
 });
