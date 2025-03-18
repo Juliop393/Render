@@ -1,9 +1,9 @@
 const express = require('express');
+const fetch = require('node-fetch');
 const app = express();
 
 app.use(express.json());
 
-// Aquí agregamos la ruta exacta que espera Make
 app.post('/v1/documents', async (req, res) => {
   try {
     const response = await fetch('https://back.apisunat.com/1.0/ubl', {
@@ -19,13 +19,5 @@ app.post('/v1/documents', async (req, res) => {
     res.status(response.status).json(result);
   } catch (error) {
     console.error('Error al enviar a APISUNAT:', error);
-    res.status(500).json({ error: error.message });
-  }
-});
-
-const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => {
-  console.log(`Servidor corriendo en el puerto ${PORT}`);
-});
-
+    res.status(500)
 
