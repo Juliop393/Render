@@ -1,23 +1,37 @@
 const express = require('express');
-const fetch = require('node-fetch');
+const axios = require('axios');
 const app = express();
+const port = process.env.PORT || 3000;
 
+// Middleware para parsear JSON
 app.use(express.json());
 
-app.post('/v1/documents', async (req, res) => {
-  try {
-    const response = await fetch('https://back.apisunat.com/1.0/ubl', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'Authorization': 'Bearer DEV_JCABLBOVCDOH29lPiopwLkFFBAnaUX0TaYGXCzBmpty62XYDkw19VLPJVcI0Z0EV'
-      },
-      body: JSON.stringify(req.body)
-    });
+// Ruta para recibir solicitudes desde Make
+app.post('/sendBill', async (req, res) => {
+    try {
+        // Token de la API de SUNAT
+        const sunatToken = 'DEV_JCABLBOVCDOH29lPiopwLkFFBAnaUX0TaYGXCzBmpty62XYDkw19VLPJVcI0Z0EV';
 
-    const result = await response.json();
-    res.status(response.status).json(result);
-  } catch (error) {
-    console.error('Error al enviar a APISUNAT:', error);
-    res.status(500)
+        // Reenviar la solicitud a la API de SUNAT
+        const response = await axios.post('https://api.sunat.com/documents/sendBill', req.body, {
+            headers: {
+                'Authorization': `Bearer ${sunatToken}`, // Usar el token aquí
+                'Content-Type': 'application/json'
+            }
+        });
+
+        // Devolver la respuesta de SUNAT a Make
+        res.status(response.status).json(response.data);
+    } catch (error) {
+        // Manejar errores
+        res.status(error.response?.status || 500).json({
+            error: error.message
+        });
+    }
+});
+
+// Iniciar el servidor
+app.listen(port, () => {
+    console.log(`Servidor corriendo en http://localhost:${port}`);
+});
 
