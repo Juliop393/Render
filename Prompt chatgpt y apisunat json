@@ -16,11 +16,28 @@ Use this number in both fields:
 - `"fileName"`: "10775725350-01-F001-00000004"
 - `"cbc:ID"`: "F001-00000004"
 
-Also, based on the following message content from the user, replace only the **customer information**, **products**, **totals**, **descriptions**, **quantities**, and **prices** accordingly.
+Now, based on the following user message, replace only the following fields in the JSON:
+- Customer RUC and Name
+- Product Description, Quantity, Unit Price
+- Total amount and amount in words
+- Tax amounts if needed
 
-Make sure to keep the rest of the JSON structure unchanged. Always output the final JSON without explanation.
+Make sure to keep the rest of the JSON structure unchanged. Always output the final JSON only, without any explanation.
 
-Here is the base JSON structure you must use and complete (just replace the necessary parts described above):
+You will receive messages in this format from the user:
+
+Example:
+Factura para cliente RUC: 10081541669  
+Nombre: NEGRON AMERI MORAIMA ELIZABETH  
+Producto: CAJAS DE AGUA  
+Cantidad: 10 unidades  
+Precio unitario: 2.00  
+Total: 23.60  
+Monto en letras: VEINTITRÉS CON 60/100 SOLES  
+Número de factura: 00000004
+
+Now generate the JSON below accordingly:
+
 {
     "personaId": "67d8940738679e0015b3d521",
     "personaToken": "DEV_JCABLBOVCDOH29lPiopwLkFFBAnaUX0TaYGXCzBmpty62XYDkw19VLPJVcI0Z0EV",
