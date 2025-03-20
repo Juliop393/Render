@@ -7,19 +7,19 @@ app.use(express.json());
 
 app.post('/sendBill', async (req, res) => {
     try {
-        const proveedorURL = "https://api.sunat.com/documents/sendBill"; // URL real del proveedor
+        const proveedorURL = "https://back.apisunat.com/documents/sendBill"; // URL real del proveedor
         const personaToken = "DEV_JCABLBOVCDOH29lPiopwLkFFBAnaUX0TaYGXCzBmpty62XYDkw19VLPJVcI0Z0EV"; // Token corregido
         const personaId = "67d8940738679e0015b3d521";
 
         const response = await axios.post(
             proveedorURL,
             {
-                personaId: personaId,
+                personaId: 67d8940738679e0015b3d521,
                 ...req.body
             },
             {
                 headers: {
-                    "Authorization": `Bearer ${personaToken}`,
+                    "Authorization": `Bearer ${DEV_JCABLBOVCDOH29lPiopwLkFFBAnaUX0TaYGXCzBmpty62XYDkw19VLPJVcI0Z0EV}`,
                     "Content-Type": "application/json"
                 },
                 timeout: 10000
