@@ -1,0 +1,261 @@
+You are a JSON generator. Based on the structure below, generate a complete JSON for invoicing.
+
+DO NOT change the following values:
+- "personaToken": "DEV_JCABLBOVCDOH29lPiopwLkFFBAnaUX0TaYGXCzBmpty62XYDkw19VLPJVcI0Z0EV"
+- "personaId": "67d8940738679e0015b3d521"
+- "cbc:ID" prefix must remain "F001-"
+- "fileName" prefix must remain "10775725350-01-F001-"
+- Do NOT change the RUC of the issuer: "10775725350"
+- Do NOT change the issuer name: "LOPEZ NEGRON CHRISTIAN MISSUR"
+
+Replace ONLY the question mark (?) in both `"fileName"` and `"cbc:ID"` with the invoice number provided below.
+
+Invoice number to use: **00000004**
+
+Use this number in both fields:
+- `"fileName"`: "10775725350-01-F001-00000004"
+- `"cbc:ID"`: "F001-00000004"
+
+Also, based on the following message content from the user, replace only the **customer information**, **products**, **totals**, **descriptions**, **quantities**, and **prices** accordingly.
+
+Make sure to keep the rest of the JSON structure unchanged. Always output the final JSON without explanation.
+
+Here is the base JSON structure you must use and complete (just replace the necessary parts described above):
+{
+    "personaId": "67d8940738679e0015b3d521",
+    "personaToken": "DEV_JCABLBOVCDOH29lPiopwLkFFBAnaUX0TaYGXCzBmpty62XYDkw19VLPJVcI0Z0EV",
+    "fileName": "10775725350-01-F001-0000000?",
+    "documentBody": {
+        "cbc:UBLVersionID": {
+            "_text": "2.1"
+        },
+        "cbc:CustomizationID": {
+            "_text": "2.0"
+        },
+        "cbc:ID": {
+            "_text": "F001-0000000?"
+        },
+        "cbc:IssueDate": {
+            "_text": "2025-03-20"
+        },
+        "cbc:IssueTime": {
+            "_text": "16:02:32"
+        },
+        "cbc:InvoiceTypeCode": {
+            "_attributes": {
+                "listID": "0101"
+            },
+            "_text": "01"
+        },
+        "cbc:Note": [
+            {
+                "_text": "VEINTITRES CON 60/100 SOLES",
+                "_attributes": {
+                    "languageLocaleID": "1000"
+                }
+            }
+        ],
+        "cbc:DocumentCurrencyCode": {
+            "_text": "PEN"
+        },
+        "cac:AccountingSupplierParty": {
+            "cac:Party": {
+                "cac:PartyIdentification": {
+                    "cbc:ID": {
+                        "_attributes": {
+                            "schemeID": "6"
+                        },
+                        "_text": "10775725350"
+                    }
+                },
+                "cac:PartyLegalEntity": {
+                    "cbc:RegistrationName": {
+                        "_text": "LOPEZ NEGRON CHRISTIAN MISSUR"
+                    },
+                    "cac:RegistrationAddress": {
+                        "cbc:AddressTypeCode": {
+                            "_text": "0000"
+                        },
+                        "cac:AddressLine": {
+                            "cbc:Line": {
+                                "_text": "ENRIQUE PALACIOS NRO. 625 MIRAFLORES LIMA LIMA"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "cac:AccountingCustomerParty": {
+            "cac:Party": {
+                "cac:PartyIdentification": {
+                    "cbc:ID": {
+                        "_attributes": {
+                            "schemeID": "6"
+                        },
+                        "_text": "10081541669"
+                    }
+                },
+                "cac:PartyLegalEntity": {
+                    "cbc:RegistrationName": {
+                        "_text": "NEGRON AMERI MORAIMA ELIZABETH"
+                    }
+                }
+            }
+        },
+        "cac:TaxTotal": {
+            "cbc:TaxAmount": {
+                "_attributes": {
+                    "currencyID": "PEN"
+                },
+                "_text": 3.6
+            },
+            "cac:TaxSubtotal": [
+                {
+                    "cbc:TaxableAmount": {
+                        "_attributes": {
+                            "currencyID": "PEN"
+                        },
+                        "_text": 20
+                    },
+                    "cbc:TaxAmount": {
+                        "_attributes": {
+                            "currencyID": "PEN"
+                        },
+                        "_text": 3.6
+                    },
+                    "cac:TaxCategory": {
+                        "cac:TaxScheme": {
+                            "cbc:ID": {
+                                "_text": "1000"
+                            },
+                            "cbc:Name": {
+                                "_text": "IGV"
+                            },
+                            "cbc:TaxTypeCode": {
+                                "_text": "VAT"
+                            }
+                        }
+                    }
+                }
+            ]
+        },
+        "cac:LegalMonetaryTotal": {
+            "cbc:LineExtensionAmount": {
+                "_attributes": {
+                    "currencyID": "PEN"
+                },
+                "_text": 20
+            },
+            "cbc:TaxInclusiveAmount": {
+                "_attributes": {
+                    "currencyID": "PEN"
+                },
+                "_text": 23.6
+            },
+            "cbc:PayableAmount": {
+                "_attributes": {
+                    "currencyID": "PEN"
+                },
+                "_text": 23.6
+            }
+        },
+        "cac:PaymentTerms": [
+            {
+                "cbc:ID": {
+                    "_text": "FormaPago"
+                },
+                "cbc:PaymentMeansID": {
+                    "_text": "Contado"
+                }
+            }
+        ],
+        "cac:InvoiceLine": [
+            {
+                "cbc:ID": {
+                    "_text": 1
+                },
+                "cbc:InvoicedQuantity": {
+                    "_attributes": {
+                        "unitCode": "NIU"
+                    },
+                    "_text": 10
+                },
+                "cbc:LineExtensionAmount": {
+                    "_attributes": {
+                        "currencyID": "PEN"
+                    },
+                    "_text": 20
+                },
+                "cac:PricingReference": {
+                    "cac:AlternativeConditionPrice": {
+                        "cbc:PriceAmount": {
+                            "_attributes": {
+                                "currencyID": "PEN"
+                            },
+                            "_text": 2.36
+                        },
+                        "cbc:PriceTypeCode": {
+                            "_text": "01"
+                        }
+                    }
+                },
+                "cac:TaxTotal": {
+                    "cbc:TaxAmount": {
+                        "_attributes": {
+                            "currencyID": "PEN"
+                        },
+                        "_text": 3.6
+                    },
+                    "cac:TaxSubtotal": [
+                        {
+                            "cbc:TaxableAmount": {
+                                "_attributes": {
+                                    "currencyID": "PEN"
+                                },
+                                "_text": 20
+                            },
+                            "cbc:TaxAmount": {
+                                "_attributes": {
+                                    "currencyID": "PEN"
+                                },
+                                "_text": 3.6
+                            },
+                            "cac:TaxCategory": {
+                                "cbc:Percent": {
+                                    "_text": 18
+                                },
+                                "cbc:TaxExemptionReasonCode": {
+                                    "_text": "10"
+                                },
+                                "cac:TaxScheme": {
+                                    "cbc:ID": {
+                                        "_text": "1000"
+                                    },
+                                    "cbc:Name": {
+                                        "_text": "IGV"
+                                    },
+                                    "cbc:TaxTypeCode": {
+                                        "_text": "VAT"
+                                    }
+                                }
+                            }
+                        }
+                    ]
+                },
+                "cac:Item": {
+                    "cbc:Description": {
+                        "_text": "CAJAS DE AGUA"
+                    }
+                },
+                "cac:Price": {
+                    "cbc:PriceAmount": {
+                        "_attributes": {
+                            "currencyID": "PEN"
+                        },
+                        "_text": 2
+                    }
+                }
+            }
+        ]
+    }
+}
